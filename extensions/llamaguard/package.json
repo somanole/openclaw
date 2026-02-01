@@ -1,7 +1,7 @@
 {
-  "name": "@openclaw/plugin-grayswan",
+  "name": "@openclaw/plugin-llamaguard",
   "version": "0.0.1",
-  "description": "Gray Swan Guardrails plugin for OpenClaw",
+  "description": "Llama Guard 3 Guardrails plugin for OpenClaw",
   "type": "module",
   "main": "index.ts",
   "devDependencies": {

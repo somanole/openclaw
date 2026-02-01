@@ -1,27 +1,29 @@
 {
-  "id": "grayswan",
+  "id": "gpt-oss-safeguard",
   "uiHints": {
-    "apiKey": {
-      "label": "API Key",
-      "sensitive": true,
-      "help": "Gray Swan Cygnal API key"
+    "provider": {
+      "label": "Model Provider",
+      "help": "e.g., ollama, vllm, openai"
     },
-    "apiBase": {
-      "label": "API Base URL",
-      "advanced": true,
-      "help": "Override for Gray Swan API base URL"
+    "model": {
+      "label": "Model ID",
+      "help": "e.g., openai/gpt-oss-safeguard-120b"
     },
-    "policyId": {
-      "label": "Policy ID",
-      "help": "Gray Swan policy identifier"
+    "policy": {
+      "label": "Safety Policy",
+      "help": "Custom policy text (400-600 tokens optimal)"
     },
-    "reasoningMode": {
-      "label": "Reasoning Mode",
+    "reasoningEffort": {
+      "label": "Reasoning Effort",
+      "help": "low, medium, or high"
+    },
+    "outputFormat": {
+      "label": "Output Format",
+      "help": "binary, json, or rich"
+    },
+    "authProfileId": {
+      "label": "Auth Profile",
       "advanced": true
-    },
-    "violationThreshold": {
-      "label": "Violation Threshold",
-      "help": "Default violation threshold (0-1)"
     },
     "timeoutMs": {
       "label": "Timeout (ms)",
@@ -29,7 +31,11 @@
     },
     "failOpen": {
       "label": "Fail Open",
-      "help": "Allow requests on API errors"
+      "help": "Allow requests on model errors"
+    },
+    "maxTokens": {
+      "label": "Max Tokens",
+      "advanced": true
     }
   },
   "configSchema": {
@@ -39,29 +45,25 @@
       "enabled": {
         "type": "boolean"
       },
-      "apiKey": {
+      "provider": {
         "type": "string"
       },
-      "apiBase": {
+      "model": {
         "type": "string"
       },
-      "policyId": {
+      "authProfileId": {
         "type": "string"
       },
-      "categories": {
-        "type": "object",
-        "additionalProperties": {
-          "type": "string"
-        }
+      "policy": {
+        "type": "string"
       },
-      "reasoningMode": {
+      "reasoningEffort": {
         "type": "string",
-        "enum": ["off", "hybrid", "thinking"]
+        "enum": ["low", "medium", "high"]
       },
-      "violationThreshold": {
-        "type": "number",
-        "minimum": 0,
-        "maximum": 1
+      "outputFormat": {
+        "type": "string",
+        "enum": ["binary", "json", "rich"]
       },
       "timeoutMs": {
         "type": "integer",
@@ -69,6 +71,10 @@
       },
       "failOpen": {
         "type": "boolean"
+      },
+      "maxTokens": {
+        "type": "integer",
+        "minimum": 1
       },
       "stages": {
         "type": "object",
@@ -101,20 +107,9 @@
             "type": "string",
             "enum": ["block", "monitor"]
           },
-          "violationThreshold": {
-            "type": "number",
-            "minimum": 0,
-            "maximum": 1
-          },
           "blockMode": {
             "type": "string",
             "enum": ["replace", "append"]
-          },
-          "blockOnMutation": {
-            "type": "boolean"
-          },
-          "blockOnIpi": {
-            "type": "boolean"
           },
           "includeHistory": {
             "type": "boolean"

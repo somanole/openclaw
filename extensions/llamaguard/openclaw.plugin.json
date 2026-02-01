@@ -1,27 +1,17 @@
 {
-  "id": "grayswan",
+  "id": "llamaguard",
   "uiHints": {
-    "apiKey": {
-      "label": "API Key",
-      "sensitive": true,
-      "help": "Gray Swan Cygnal API key"
+    "provider": {
+      "label": "Model Provider",
+      "help": "e.g., ollama, openai"
     },
-    "apiBase": {
-      "label": "API Base URL",
-      "advanced": true,
-      "help": "Override for Gray Swan API base URL"
+    "model": {
+      "label": "Model ID",
+      "help": "e.g., llama-guard3:8b"
     },
-    "policyId": {
-      "label": "Policy ID",
-      "help": "Gray Swan policy identifier"
-    },
-    "reasoningMode": {
-      "label": "Reasoning Mode",
+    "authProfileId": {
+      "label": "Auth Profile",
       "advanced": true
-    },
-    "violationThreshold": {
-      "label": "Violation Threshold",
-      "help": "Default violation threshold (0-1)"
     },
     "timeoutMs": {
       "label": "Timeout (ms)",
@@ -29,7 +19,11 @@
     },
     "failOpen": {
       "label": "Fail Open",
-      "help": "Allow requests on API errors"
+      "help": "Allow requests on model errors"
+    },
+    "maxTokens": {
+      "label": "Max Tokens",
+      "advanced": true
     }
   },
   "configSchema": {
@@ -39,29 +33,14 @@
       "enabled": {
         "type": "boolean"
       },
-      "apiKey": {
+      "provider": {
         "type": "string"
       },
-      "apiBase": {
+      "model": {
         "type": "string"
       },
-      "policyId": {
+      "authProfileId": {
         "type": "string"
-      },
-      "categories": {
-        "type": "object",
-        "additionalProperties": {
-          "type": "string"
-        }
-      },
-      "reasoningMode": {
-        "type": "string",
-        "enum": ["off", "hybrid", "thinking"]
-      },
-      "violationThreshold": {
-        "type": "number",
-        "minimum": 0,
-        "maximum": 1
       },
       "timeoutMs": {
         "type": "integer",
@@ -69,6 +48,29 @@
       },
       "failOpen": {
         "type": "boolean"
+      },
+      "maxTokens": {
+        "type": "integer",
+        "minimum": 1
+      },
+      "categories": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            }
+          },
+          "required": ["id", "name", "description"]
+        }
       },
       "stages": {
         "type": "object",
@@ -101,20 +103,9 @@
             "type": "string",
             "enum": ["block", "monitor"]
           },
-          "violationThreshold": {
-            "type": "number",
-            "minimum": 0,
-            "maximum": 1
-          },
           "blockMode": {
             "type": "string",
             "enum": ["replace", "append"]
-          },
-          "blockOnMutation": {
-            "type": "boolean"
-          },
-          "blockOnIpi": {
-            "type": "boolean"
           },
           "includeHistory": {
             "type": "boolean"

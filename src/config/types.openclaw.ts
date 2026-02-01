@@ -12,7 +12,6 @@ import type {
   TalkConfig,
 } from "./types.gateway.js";
 import type { HooksConfig } from "./types.hooks.js";
-import type { GuardrailsConfig } from "./types.guardrails.js";
 import type {
   AudioConfig,
   BroadcastConfig,
@@ -81,7 +80,6 @@ export type OpenClawConfig = {
   nodeHost?: NodeHostConfig;
   agents?: AgentsConfig;
   tools?: ToolsConfig;
-  guardrails?: GuardrailsConfig;
   bindings?: AgentBinding[];
   broadcast?: BroadcastConfig;
   audio?: AudioConfig;
