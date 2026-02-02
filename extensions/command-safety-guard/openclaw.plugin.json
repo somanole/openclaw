@@ -3,6 +3,14 @@
   "name": "Command Safety Guard",
   "description": "Blocks execution of potentially destructive shell commands",
   "version": "0.0.1",
+  "uiHints": {
+    "extraPatterns": { "label": "Extra Block Patterns", "advanced": true },
+    "allowPatterns": { "label": "Allow Patterns", "advanced": true },
+    "disabledRules": { "label": "Disabled Rules", "advanced": true },
+    "failOpen": { "label": "Fail Open", "help": "Allow commands through if evaluation fails" },
+    "stages.beforeToolCall.enabled": { "label": "Enabled", "help": "Enable guardrail check before tool calls" },
+    "stages.beforeToolCall.mode": { "label": "Mode", "help": "Block violations or monitor only" }
+  },
   "configSchema": {
     "type": "object",
     "properties": {
@@ -37,11 +45,6 @@
           }
         }
       }
-    },
-    "uiHints": {
-      "extraPatterns": { "label": "Extra Block Patterns", "advanced": true },
-      "allowPatterns": { "label": "Allow Patterns", "advanced": true },
-      "disabledRules": { "label": "Disabled Rules", "advanced": true }
     }
   }
 }

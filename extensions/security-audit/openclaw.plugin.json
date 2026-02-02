@@ -3,6 +3,14 @@
   "name": "Security Audit",
   "description": "Restricts access to sensitive credential and configuration files",
   "version": "0.0.1",
+  "uiHints": {
+    "extraPaths": { "label": "Extra Sensitive Paths", "advanced": true },
+    "allowPaths": { "label": "Allow Paths", "advanced": true },
+    "disabledRules": { "label": "Disabled Rules", "advanced": true },
+    "failOpen": { "label": "Fail Open", "help": "Allow access through if evaluation fails" },
+    "stages.beforeToolCall.enabled": { "label": "Enabled", "help": "Enable guardrail check before tool calls" },
+    "stages.beforeToolCall.mode": { "label": "Mode", "help": "Block violations or monitor only" }
+  },
   "configSchema": {
     "type": "object",
     "properties": {
@@ -37,11 +45,6 @@
           }
         }
       }
-    },
-    "uiHints": {
-      "extraPaths": { "label": "Extra Sensitive Paths", "advanced": true },
-      "allowPaths": { "label": "Allow Paths", "advanced": true },
-      "disabledRules": { "label": "Disabled Rules", "advanced": true }
     }
   }
 }
