@@ -1,5 +1,5 @@
 {
-  "name": "@openclaw/plugin-llamaguard",
+  "name": "@openclaw/llamaguard",
   "version": "0.0.1",
   "description": "Llama Guard 3 Guardrails plugin for OpenClaw",
   "type": "module",

@@ -1,5 +1,5 @@
 {
-  "name": "@openclaw/plugin-grayswan",
+  "name": "@openclaw/grayswan-cygnal-guardrail",
   "version": "0.0.1",
   "description": "Gray Swan Guardrails plugin for OpenClaw",
   "type": "module",

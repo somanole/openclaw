@@ -1,5 +1,5 @@
 {
-  "name": "@openclaw/plugin-gpt-oss-safeguard",
+  "name": "@openclaw/gpt-oss-safeguard",
   "version": "0.0.1",
   "description": "GPT-OSS-Safeguard guardrails plugin for OpenClaw",
   "type": "module",

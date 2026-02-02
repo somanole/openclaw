@@ -272,7 +272,7 @@ function getGrayswanRole(stage: GuardrailStage): GrayswanMonitorMessage["role"] 
 // ============================================================================
 
 const grayswanPlugin = createGuardrailPlugin<GrayswanGuardrailConfig>({
-  id: "grayswan",
+  id: "grayswan-cygnal-guardrail",
   name: "Gray Swan Guardrails",
   description: "Guardrail functionality via the Gray Swan Cygnal API",
 

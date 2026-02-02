@@ -97,7 +97,7 @@ Configuration example:
 {
   "plugins": {
     "entries": {
-      "grayswan": {
+      "grayswan-cygnal-guardrail": {
         "enabled": true,
         "config": {
           "enabled": true,
