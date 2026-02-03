@@ -1,9 +1,9 @@
 ---
-summary: "Guardrail stages, plugin configuration, and available guardrail plugins (Gray Swan, GPT-OSS-Safeguard)"
+summary: "Guardrail stages, plugin configuration, and available guardrail plugins (Straja, Gray Swan, GPT-OSS-Safeguard)"
 read_when:
   - Adding or tuning LLM guardrails
   - Investigating guardrail blocks
-  - Configuring Gray Swan or GPT-OSS-Safeguard
+  - Configuring Straja, Gray Swan, or GPT-OSS-Safeguard
 title: "Guardrails"
 ---
 
@@ -140,6 +140,43 @@ Each stage receives a different view of the conversation:
 - `after_response`: history + the final **assistant** response text
 
 ## Built-in guardrail plugins
+
+### Straja Guard
+
+Straja Guard uses Straja’s Guard API + Toolgate to enforce pre-model, post-model,
+and pre-execution tool checks via HTTP hooks.
+
+Configuration example:
+
+```json
+{
+  "plugins": {
+    "entries": {
+      "straja-guard": {
+        "enabled": true,
+        "config": {
+          "baseUrl": "http://localhost:8080",
+          "apiKey": "project-api-key-from-straja-config",
+          "timeoutMs": 15000,
+          "failOpen": true,
+          "guardrailPriority": 80,
+          "stages": {
+            "beforeRequest": { "enabled": true, "mode": "block" },
+            "beforeToolCall": { "enabled": true, "mode": "block" },
+            "afterResponse": { "enabled": true, "mode": "monitor" }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+Notes:
+
+- `baseUrl` defaults to `http://localhost:8080`.
+- `apiKey` should match one of the `projects[].api_keys` values in your Straja config.
+- Toolgate blocks return errors; warnings are logged and allowed.
 
 ### Gray Swan
 
