@@ -127,7 +127,7 @@ Each stage receives a different view of the conversation:
 
 ### Gray Swan
 
-Gray Swan guardrails use the [Gray Swan Cygnal API](https://grayswan.ai) for content moderation.
+Gray Swan guardrails use the [Gray Swan Cygnal API for OpenClaw](https://platform.grayswan.ai/openclaw) for content moderation.
 
 Configuration example:
 
